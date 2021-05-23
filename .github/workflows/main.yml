@@ -5,7 +5,7 @@ on:
 jobs:
   copy-target:
     name: copy hello.php
-    runs-on: ubuntu-latarget
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
