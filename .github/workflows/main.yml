@@ -14,7 +14,7 @@ jobs:
         with:
           repository: satsukizzz/ActionsTest
           path: ActionsTest
-          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          token: ${{ secrets.MY_ACCESS_TOKEN }}
       - name: copy hello.php
         run: cp ActionsTest/hello.php copied/hello.php
       - name: clean ActionsTest
@@ -22,7 +22,7 @@ jobs:
       - name: create PR
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           commit-message: 'copy hello.php'
           branch: copy_target
