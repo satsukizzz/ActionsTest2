@@ -1,0 +1,31 @@
+name: copy hello.php from ActionsTest
+on:
+  repository_dispatch:
+    types: [target-updated]
+jobs:
+  copy-target:
+    name: copy hello.php
+    runs-on: ubuntu-latarget
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: clone ActionsTest
+        uses: actions/checkout@v2
+        with:
+          repository: satsukizzz/ActionsTest
+          path: ActionsTest
+          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+      - name: copy hello.php
+        run: cp ActionsTest/hello.php copied/hello.php
+      - name: clean ActionsTest
+        run: rm -rf ActionsTest
+      - name: create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          commit-message: 'copy hello.php'
+          branch: copy_target
+          branch-suffix: timestamp
+          delete-branch: true
+          title: 'updated hello.php'
