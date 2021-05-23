@@ -22,8 +22,6 @@ jobs:
       - name: commit copied/hello.php
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           branch: main
           title: 'updated hello.php'
 
